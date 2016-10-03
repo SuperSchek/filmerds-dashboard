@@ -18,15 +18,15 @@ export AWS_REGION=REGION
 ```
 
 ```sh
-rails db:migrate
+$ rails db:migrate
 ```
 
 ```sh
-rake test
+$ rake test
 ```
 
 ```sh
-rails s
+$ rails s
 ```
 
 Visit http://localhost:3000/uploads/new and upload!
