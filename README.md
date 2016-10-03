@@ -1,5 +1,7 @@
 # Direct S3 Upload Example
 
+[![Build Status](https://travis-ci.org/danielwestendorf/direct-s3-upload-example.svg?branch=master)](https://travis-ci.org/danielwestendorf/direct-s3-upload-example)
+
 An opinionated starting point for do-it-yourself AWS S3 file uploads. Example in Rails, but could easily be implemented in any other Ruby based web app.
 
 ## Fire up your engines!
