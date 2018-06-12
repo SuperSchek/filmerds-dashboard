@@ -1,5 +1,5 @@
 class Upload < ApplicationRecord
-  validates :size, inclusion: { in: 0..2.megabytes }
+  validates :size, inclusion: { in: 0..50.megabytes }
 
   def key
     "#{id}/#{filename}"

@@ -1,8 +1,60 @@
-<h1>Upload a new file</h1>
+<h1>Upload een podcast!</h1>
 
 <%= form_for @upload do |f| %>
-  <p>
-    <label>Select a file</label>
-    <input type="file"/>
-  </p>
+
+  <div class="form-group">
+    <label for="podcast_title">Titel</label>
+    <span class="small">(Podcast naam wordt opbouwd als "[categorie] | [titel]")</span>
+    <input type="text" class="form-control" id="podcast_title" placeholder="Solo: A Star Wars Story" required>
+  </div>
+
+  <div class="form-group">
+    <label for="podcast_category">Categorie</label>
+    <select class="form-control" id="podcast_category" required>
+      <option value="Discussie" >Discussie</option>
+      <option value="Favorieten" >Favorieten</option>
+      <option value="Filmnieuws" >Filmnieuws</option>
+      <option value="Het oeuvre van">Het oeuvre van</option>
+      <option value="Interview" >Interview</option>
+      <option value="Praattafel" >Praattafel</option>
+      <option value="Preview" >Preview</option>
+      <option value="Review" selected>Review</option>
+      <option value="Special" >Special</option>
+      <option value="Statafel" >Statafel</option>
+      <option value="Stelling" >Stelling</option>
+      <option value="Terugblik" >Terugblik</option>
+      <option value="Voorbeschouwing" >Voorbeschouwing</option>
+      <option value="Vooruitblik" >Vooruitblik</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="podcast_description">Omschrijving</label>
+    <textarea class="form-control" id="podcast_description" rows="3" required></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="podcast_yt_url">YouTube URL</label>
+    <span class="small">URL in het volgende formaat: https://www.youtube.com/watch?v=eXD29NP-xEA)</span>
+    <input type="text" class="form-control" id="podcast_yt_url" placeholder="https://www.youtube.com/watch?v=eXD29NP-xEA" required>
+  </div>
+
+  <div class="form-group">
+    <label for="podcast_audio">Audio bestand</label>
+    <span class="small">(Max 50mb, maar dit zou meer dan genoeg moeten zijn.)</span>
+    <input type="file" class="form-control-file" id="podcast_audio" aria-describedby="fileHelp" required>
+    <small id="fileHelp" class="form-text text-muted">Let a.u.b. een beetje op de filesize/bitrate. 128kbps is meer dan zat voor gesproken podcasts. Ik convert zelf alles op 128kbps in .mp3.</small>
+  </div>
+
+  <button class="pull-right" type="submit">Uploaden!</button>
+
+  <div class="loader">
+    <div class="container">
+    <div class="col-10 offset-1 text-center">
+      <div class="progress" style="height: 3px;">
+        <div id="s3Uplaod" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <span class="status">Uploading audio file to S3</span>
+    </div>
+  </div>
 <% end %>

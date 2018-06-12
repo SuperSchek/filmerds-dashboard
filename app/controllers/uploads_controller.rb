@@ -32,8 +32,8 @@ class UploadsController < ApplicationController
   def signature_options
     {
       key: @upload.key,
-      acl: "private",
-      content_length_range: 0..2.megabytes # Enforce a filesize limit
+      acl: "public-read",
+      content_length_range: 0..50.megabytes # Enforce a filesize limit
     }
   end
 end
