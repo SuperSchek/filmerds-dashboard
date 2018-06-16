@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 20161001162728) do
 
   create_table "uploads", force: :cascade do |t|
-    t.string   "filename"
-    t.integer  "size"
+    t.string "filename"
+    t.integer "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

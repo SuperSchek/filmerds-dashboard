@@ -57,3 +57,10 @@ gem 'locomotivecms_coal', '~> 1.5.0'
 
 # Bootstrap 4
 gem 'bootstrap', '~> 4.1.1'
+
+# Datetime picker
+gem 'momentjs-rails'
+gem 'bootstrap4-datetime-picker-rails'
+
+# Fontawesome
+gem "font-awesome-rails"

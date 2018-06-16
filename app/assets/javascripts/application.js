@@ -14,3 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require moment
+//= require moment/nl.js
+//= require tempusdominus-bootstrap-4.js

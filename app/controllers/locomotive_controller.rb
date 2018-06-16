@@ -17,7 +17,12 @@ class LocomotiveController < ActionController::Base
         naam: request_payload['title'],
         categorie: request_payload['category'],
         omschrijving: request_payload['description'],
-        publication_date: DateTime.now,
+        # if ( request_payload['publication_date'].empty? )
+        #     publication_date: DateTime.now,
+        # else
+        #     publication_date: DateTime.now,
+        # end
+        publication_date: request_payload['publication_date'],
         youtube_url: request_payload['podcast_yt_url'],
         s3_url: s3_url_stripped,
         s3_filesize: get_filesize_s3(s3_url_stripped),
