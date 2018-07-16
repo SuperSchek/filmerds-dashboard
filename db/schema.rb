@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20161001162728) do
 
-  create_table "uploads", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "uploads", id: :serial, force: :cascade do |t|
     t.string "filename"
     t.integer "size"
     t.datetime "created_at", null: false
