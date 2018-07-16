@@ -40,6 +40,8 @@ $(document).on('change', '#podcast_audio', (delegatedEvent) => {
         podcast.publication_date = moment( publication_datetime, "DD-MM-YYYY HH:mm" ).format();
       }
 
+      console.log( podcast );
+
       $.ajax({
         async: false,
         crossDomain: true,
