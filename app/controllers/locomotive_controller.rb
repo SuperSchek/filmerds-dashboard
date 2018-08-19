@@ -26,7 +26,7 @@ class LocomotiveController < ActionController::Base
         youtube_url: request_payload['podcast_yt_url'],
         s3_url: s3_url_stripped,
         s3_filesize: get_filesize_s3(s3_url_stripped),
-        podcast_length: get_audio_length(s3_url_stripped),
+        # podcast_length: get_audio_length(s3_url_stripped),
     )
 
     render json: {
@@ -53,16 +53,16 @@ class LocomotiveController < ActionController::Base
         return resp["content-length"]
     end
 
-    def get_audio_length(filepath)
-        filepath = filepath.gsub "&amp;", "%26"
-        filepath = filepath.gsub "&", "%26"
+    # def get_audio_length(filepath)
+    #     filepath = filepath.gsub "&amp;", "%26"
+    #     filepath = filepath.gsub "&", "%26"
 
-        pipe = "ffmpeg -i #{filepath} 2>&1 | grep 'Duration' | cut -d ' ' -f 4 | sed s/,//"
-        command = `#{pipe}`
+    #     pipe = "ffmpeg -i #{filepath} 2>&1 | grep 'Duration' | cut -d ' ' -f 4 | sed s/,//"
+    #     command = `#{pipe}`
 
-        duration = command.slice(0..(command.index('.')))
+    #     duration = command.slice(0..(command.index('.')))
 
-        return duration[0..-2]
-    end
+    #     return duration[0..-2]
+    # end
 
 end
