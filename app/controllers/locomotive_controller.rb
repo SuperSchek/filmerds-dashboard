@@ -39,10 +39,10 @@ class LocomotiveController < ActionController::Base
   end
 
   def send_mail( name, category, description, yt_url, s3_url )
-    from = Email.new(email: ENV['LOCO_ENGINE_MAIL'])
+    from = SendGrid::Email.new(email: ENV['LOCO_ENGINE_MAIL'])
     subject = category + ' | ' + name + ' is geüpload naar filmerds.nl'
-    to = Email.new(email: ENV['ADMIN_EMAIL'])
-    content = Content.new(type: "text/html", value: "<html><body><h3>Er is een nieuwe podcast geüpload!</h3><h4>#{ category } | #{ name }</h4><p>#{ description }</p><ul><li>YouTube: #{ yt_url }</li><li>S3 URL: #{ s3_url }</li></ul></body></html>")
+    to = SendGrid::Email.new(email: ENV['ADMIN_EMAIL'])
+    content = SendGrid::Content.new(type: "text/html", value: "<html><body><h3>Er is een nieuwe podcast geüpload!</h3><h4>#{ category } | #{ name }</h4><p>#{ description }</p><ul><li>YouTube: #{ yt_url }</li><li>S3 URL: #{ s3_url }</li></ul></body></html>")
     mail = SendGrid::Mail.new(from, subject, to, content)
 
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
