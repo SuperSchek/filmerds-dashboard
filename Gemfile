@@ -67,4 +67,7 @@ gem 'bootstrap4-datetime-picker-rails'
 # Fontawesome
 gem "font-awesome-rails"
 
+# SendGrid
+gem 'sendgrid-ruby'
+
 ruby "2.5.1"

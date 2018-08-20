@@ -3,6 +3,9 @@ require 'json'
 require 'net/http'
 require 'uri'
 
+require 'sendgrid-ruby'
+include SendGrid
+
 class LocomotiveController < ActionController::Base
 
   def submit_podcast
@@ -29,9 +32,26 @@ class LocomotiveController < ActionController::Base
         # podcast_length: get_audio_length(s3_url_stripped),
     )
 
+    send_mail( request_payload['title'], request_payload['category'], request_payload['description'], request_payload['podcast_yt_url'], s3_url_stripped)
+
     render json: {
         "response": podcast
     }
+  end
+
+  def send_mail( name, category, description, yt_url, s3_url )
+    from = Email.new(email: ENV['LOCO_ENGINE_MAIL'])
+    subject = category + ' | ' + name + ' is geüpload naar filmerds.nl'
+    to = Email.new(email: ENV['ADMIN_EMAIL'])
+    content = Content.new(type: "text/html", value: "<html><body><h3>Er is een nieuwe podcast geüpload!</h3><h4>#{ category } | #{ name }</h4><p>#{ description }</p><ul><li>YouTube: #{ yt_url }</li><li>S3 URL: #{ s3_url }</li></ul></body></html>")
+    mail = Mail.new(from, subject, to, content)
+
+    sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+    response = sg.client.mail._('send').post(request_body: mail.to_json)
+
+    puts response.status_code
+    puts response.body
+    puts response.headers
   end
 
     # Sends a head request to the S3 URL and returns filesize in bytes
