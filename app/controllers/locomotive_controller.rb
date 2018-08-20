@@ -44,7 +44,7 @@ class LocomotiveController < ActionController::Base
     subject = category + ' | ' + name + ' is geüpload naar filmerds.nl'
     to = Email.new(email: ENV['ADMIN_EMAIL'])
     content = Content.new(type: "text/html", value: "<html><body><h3>Er is een nieuwe podcast geüpload!</h3><h4>#{ category } | #{ name }</h4><p>#{ description }</p><ul><li>YouTube: #{ yt_url }</li><li>S3 URL: #{ s3_url }</li></ul></body></html>")
-    mail = Mail.new(from, subject, to, content)
+    mail = SendGrid::Mail.new(from, subject, to, content)
 
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
     response = sg.client.mail._('send').post(request_body: mail.to_json)
