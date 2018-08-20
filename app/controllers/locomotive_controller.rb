@@ -4,7 +4,6 @@ require 'net/http'
 require 'uri'
 
 require 'sendgrid-ruby'
-include SendGrid
 
 class LocomotiveController < ActionController::Base
 
