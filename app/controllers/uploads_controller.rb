@@ -33,7 +33,7 @@ class UploadsController < ApplicationController
     {
       key: @upload.key,
       acl: "public-read",
-      content_length_range: 0..50.megabytes # Enforce a filesize limit
+      content_length_range: 0..150.megabytes # Enforce a filesize limit
     }
   end
 end
